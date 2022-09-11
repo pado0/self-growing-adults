@@ -1,16 +1,12 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.3"
-    id("io.spring.dependency-management") version "1.0.13.RELEASE"
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.spring") version "1.6.21"
-    kotlin("plugin.jpa") version "1.6.21"
+    kotlin("jvm")
+    kotlin("kapt")
+    kotlin("plugin.noarg")
 }
 
-group = "com.pado"
-version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_11
+
+//java.sourceCompatibility = JavaVersion.VERSION_11
 
 configurations {
     compileOnly {
@@ -18,32 +14,61 @@ configurations {
     }
 }
 
-repositories {
-    mavenCentral()
+val props = org.jetbrains.kotlin.konan.properties.loadProperties("ci.properties")
+
+extra["kotlin-coroutines.version"] = "1.6.1"
+
+allprojects{
+    apply(plugin = "kotlin")
+    apply(plugin = "java")
+    apply(plugin = "kotlin-kapt")
+    apply(plugin = "kotlin-noarg")
+
+    group = "com.pado"
+    version = props.getProperty("appVersion") ?: "1.0.0-SNAPSHOT"
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "11"
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
 }
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("org.projectlombok:lombok")
-    runtimeOnly("com.h2database:h2")
-    runtimeOnly("org.postgresql:postgresql")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
+subprojects{
+    dependencies {
+        implementation(kotlin("stdlib"))
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+        implementation("io.github.microutils:kotlin-logging:${Version.kotlinLoggingVersion}")
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "11"
+        testImplementation("io.kotest:kotest-runner-junit5:${Version.kotestVersion}")
+        testImplementation("io.kotest:kotest-assertions-core:${Version.kotestVersion}")
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${Version.kotlinCoroutinesVersion}")
+        testImplementation("io.mockk:mockk:${Version.mockkVersion}")
+        testImplementation("io.kotest.extensions:kotest-extensions-spring:${Version.kotestExtensionsSpringVersion}")
+        testImplementation("org.mockito.kotlin:mockito-kotlin:${Version.mockitoVersion}")
+
+    }
+
+    repositories {
+        maven("https://plugins.gradle.org/m2/")
+        mavenCentral()
+        maven("https://jitpack.io")
     }
 }
 
-tasks.withType<Test> {
+
+tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
