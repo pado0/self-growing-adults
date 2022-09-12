@@ -1,12 +1,6 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
-val jar: Jar by tasks
-val bootJar: BootJar by tasks
-
-
 plugins {
-	id("org.springframework.boot")
-	id("io.spring.dependency-management")
 
 	// jpa에서 엔티티 클래스를 생성하려면 매개변수 없는 생성자가 필요하다
 	// noargs 플러그인을 래핑한게 plugin.jpa이다. 리플렉션을 통해 매개변수 없는 생성자로
@@ -36,7 +30,6 @@ allOpen{
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	runtimeOnly("com.h2database:h2")
 

@@ -26,6 +26,8 @@ allprojects{
     apply(plugin = "java")
     apply(plugin = "kotlin-kapt")
     apply(plugin = "kotlin-noarg")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
 
     // 패키지명, 버전명 명시를 위함
     group = "com.pado"
@@ -48,7 +50,6 @@ allprojects{
     repositories {
         mavenCentral()
     }
-
 }
 
 subprojects{
@@ -76,7 +77,7 @@ subprojects{
 
     repositories {
         maven("https://plugins.gradle.org/m2/") // gradle plugin 저장소의 주소
-        mavenCentral()
+        // mavenCentral()
         maven("https://jitpack.io") // jitpack에 배포된 라이브러리를 쓸때 jitpack 저장소 사용
     }
 }
