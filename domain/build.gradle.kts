@@ -1,6 +1,16 @@
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
+val jar: Jar by tasks
+val bootJar: BootJar by tasks
+bootJar.enabled = false
+jar.enabled = true
+
 plugins {
+
+	// springframework.boot는 jar파일 생성해주는 플러그인이므로 전체 종속성보다는 각 모듈별로 지정
+	// https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/htmlsingle/
+	id("org.springframework.boot")
+	id("io.spring.dependency-management")
 
 	// jpa에서 엔티티 클래스를 생성하려면 매개변수 없는 생성자가 필요하다
 	// noargs 플러그인을 래핑한게 plugin.jpa이다. 리플렉션을 통해 매개변수 없는 생성자로

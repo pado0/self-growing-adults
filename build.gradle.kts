@@ -26,8 +26,6 @@ allprojects{
     apply(plugin = "java")
     apply(plugin = "kotlin-kapt")
     apply(plugin = "kotlin-noarg")
-    apply(plugin = "org.springframework.boot")
-    apply(plugin = "io.spring.dependency-management")
 
     // 패키지명, 버전명 명시를 위함
     group = "com.pado"
@@ -50,6 +48,7 @@ allprojects{
     repositories {
         mavenCentral()
     }
+
 }
 
 subprojects{
