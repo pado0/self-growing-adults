@@ -1,11 +1,11 @@
-package domain
+package api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DomainApplication
+class ApiApplication
 
 fun main(args: Array<String>) {
-	runApplication<DomainApplication>(*args)
+    runApplication<ApiApplication>(*args)
 }
