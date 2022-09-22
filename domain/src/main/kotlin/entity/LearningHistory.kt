@@ -5,7 +5,16 @@ import vo.MemberProfileIds
 import javax.persistence.*
 
 @Entity
-
+// 테이블 검색의 효율성을 더하기 위해 B-tree 구조를 사용한 인덱스를 적용한다.
+// https://velog.io/@ljinsk3/JPA%EB%A1%9C-%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+// 복합인덱스 만든느 법
+// https://youngwonhan-family.tistory.com/86
+@Table(
+    name = "learning_history",
+    indexes = [
+        Index(name = "idx_learning_history_member_id_profile_id", columnList = "member_id,profile_id")
+    ]
+)
 class LearningHistory(
 
 
@@ -26,7 +35,6 @@ class LearningHistory(
     // 학습 이력 구분, COMPLETED
 
     // 학습시간, Second
-
 
 
 ) {
