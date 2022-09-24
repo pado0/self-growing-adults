@@ -1,7 +1,10 @@
 package entity
 
 import constant.DB_NULL_ID
+import vo.ContentClassification
+import vo.LeaerningHistoryType
 import vo.MemberProfileIds
+import vo.Second
 import javax.persistence.*
 
 @Entity
@@ -17,27 +20,44 @@ import javax.persistence.*
 )
 class LearningHistory(
 
-
-    // 값타입. 값타입을 정의하는 클래스를 VO라고 한다. Embedded
-
-    // 회원 정보 (profile Id, member Id가 MemberProfileIds 클래스에 존재)
+    /**
+        회원 정보 (VO, 값타입. @Embedded)
+     */
     @Embedded
     @AttributeOverrides(
         AttributeOverride(name = "memberId", column = Column(name = "member_id", nullable = false)),
         AttributeOverride(name = "profileId", column = Column(name = "profile_id", nullable = false)),
     ) // VO 내 컬럼명이 중복되므로 매핑정보 재정의
-    var memberProfileIds: MemberProfileIds
+    var memberProfileIds: MemberProfileIds,
 
-    // 컨텐츠 구분 (ActType, ContentType)
-    // ContentClassification VO
+    /**
+        컨텐츠 타입 (VO, 값타입. @Embedded)
+     */
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "contentId", column = Column(name = "content_id", nullable = false)),
+        AttributeOverride(name = "actType", column = Column(name = "act_type", nullable = false)),
+        AttributeOverride(name = "contentType", column = Column(name = "content_type", nullable = false)),
+    )
+    val contentClassification: ContentClassification,
 
-    // Enum. Enumerated
-    // 학습 이력 구분, COMPLETED
+    /**
+        학습 이력 (ENUM 타입. @Enumerated, EnumType 지정 필요)
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false, length = 50)
+    val learningHistoryType: LeaerningHistoryType,
 
-    // 학습시간, Second
+    /**
+        학습 시간 (VO, 값타입. @Embedded)
+     */
+    @Embedded
+    @AttributeOverrides(
+        AttributeOverride(name = "value", column = Column(name = "learning_time", nullable = false))
+    )
+    val second: Second,
 
-
-) {
+    ) {
     @Id
     val id: Long = DB_NULL_ID
 }
