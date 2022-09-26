@@ -55,7 +55,10 @@ class LearningHistory(
     @AttributeOverrides(
         AttributeOverride(name = "value", column = Column(name = "learning_time", nullable = false))
     )
-    val second: Second,
+    val learningTime: Second,
+
+    @Column(name = "act_id")
+    val actId: Long?,
 
     ) {
     @Id
