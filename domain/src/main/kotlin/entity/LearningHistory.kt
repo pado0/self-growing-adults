@@ -5,6 +5,7 @@ import vo.ContentClassification
 import vo.LeaerningHistoryType
 import vo.MemberProfileIds
 import vo.Second
+import java.time.Instant
 import javax.persistence.*
 
 @Entity
@@ -59,6 +60,9 @@ class LearningHistory(
 
     @Column(name = "act_id")
     val actId: Long?,
+
+    @Column(name = "created_at")
+    val createdAt: Instant,
 
     ) {
     @Id

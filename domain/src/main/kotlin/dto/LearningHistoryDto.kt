@@ -23,6 +23,22 @@ data class LearningHistoryDto(
         learningHistoryType = learningHistoryType,
         learningTime = learningTime,
         actId = actId,
+        createdAt = createdAt,
     )
+
+    companion object {
+        fun fromEntity(learningHistory: LearningHistory): LearningHistoryDto =
+            LearningHistoryDto(
+                id = learningHistory.id,
+                memberProfileIds = learningHistory.memberProfileIds,
+                contentClassification = learningHistory.contentClassification,
+                learningHistoryType = learningHistory.learningHistoryType,
+                learningTime = learningHistory.learningTime,
+                actId = learningHistory.actId,
+                createdAt = learningHistory.createdAt,
+            )
+    }
+
+
 }
 

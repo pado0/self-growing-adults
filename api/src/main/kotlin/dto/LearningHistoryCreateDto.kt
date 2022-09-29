@@ -1,6 +1,5 @@
 package dto
 
-import type.ActType
 import vo.ContentClassification
 import vo.LeaerningHistoryType
 import vo.MemberProfileIds
@@ -13,5 +12,5 @@ data class LearningHistoryCreateDto(
     val learningHistoryType: LeaerningHistoryType,
     val learningTime: Second,
     val actId: Long,
-    val score: List<LearningScoreDto>,
+    val score: List<LearningScoreDto>?,
 )
