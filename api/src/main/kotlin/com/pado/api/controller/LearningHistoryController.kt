@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import com.pado.api.service.LearningHistoryCreateService
 import com.pado.domain.dto.LearningHistoryDto
+import com.pado.domain.vo.ContentClassification
+import com.pado.domain.vo.MemberProfileIds
+import com.pado.domain.vo.Second
 
 @RestController
 @RequestMapping("/controller/learning-history")
@@ -19,10 +22,10 @@ class LearningHistoryController(
     fun create(@RequestBody request: LearningHistoryRequestDto): LearningHistoryDto {
         return learningHistoryCreateService.createLearningHistory(
             LearningHistoryCreateDto(
-                memberProfileIds = request.memberProfileIds,
-                learningTime = request.learningTime,
+                memberProfileIds = MemberProfileIds(memberId = request.memberId, profileId = request.profileId),
+                learningTime = Second(value = request.learningTime),
                 learningHistoryType = request.learningHistoryType,
-                contentClassification = request.contentClassification,
+                contentClassification = ContentClassification(contentType = request.contentType, actType = request.actType, contentId = request.contentId),
                 actId = request.actId,
                 score = request.score,
             )
