@@ -14,4 +14,22 @@ data class LearningHistoryCreateDto(
     val learningTime: Second,
     val actId: Long,
     val score: List<LearningScoreDto>?,
-)
+){
+    companion object {
+        fun of(
+            memberProfileIds: MemberProfileIds,
+            contentClassification: ContentClassification,
+            learningHistoryType: LeaerningHistoryType,
+            learningTime: Second,
+            actId: Long,
+            score: List<LearningScoreDto>?
+        ) = LearningHistoryCreateDto(
+            memberProfileIds = memberProfileIds,
+            contentClassification = contentClassification,
+            learningHistoryType = learningHistoryType,
+            learningTime = learningTime,
+            actId = actId,
+            score = score,
+        )
+    }
+}

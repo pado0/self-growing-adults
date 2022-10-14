@@ -21,22 +21,5 @@ data class LearningHistoryRequestDto(
     val actId: Long,
     val score: List<LearningScoreDto>?,
 ) {
-    companion object {
-        fun toCreateDto(
 
-        ): LearningHistoryCreateDto {
-            return LearningHistoryCreateDto(
-                memberProfileIds = MemberProfileIds(memberId = this.memberId, profileId = this.profileId),
-                learningTime = Second(value = request.learningTime),
-                learningHistoryType = request.learningHistoryType,
-                contentClassification = ContentClassification(
-                    contentType = request.contentType,
-                    actType = request.actType,
-                    contentId = request.contentId
-                ),
-                actId = request.actId,
-                score = request.score,
-            )
-        }
-    }
 }

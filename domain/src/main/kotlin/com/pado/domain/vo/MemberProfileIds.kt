@@ -14,4 +14,14 @@ data class MemberProfileIds(
      * 프로필 id : Profile Entity auto increment id
      */
     var profileId: Long,
-)
+){
+    companion object{
+        fun of(
+            memberId: Long,
+            profileId: Long,
+        ) =MemberProfileIds(
+            memberId = memberId,
+            profileId = profileId
+        )
+    }
+}

@@ -21,11 +21,20 @@ class LearningHistoryController(
     @PostMapping("/create")
     fun create(@RequestBody request: LearningHistoryRequestDto): LearningHistoryDto {
         return learningHistoryCreateService.createLearningHistory(
-            LearningHistoryCreateDto(
-                memberProfileIds = MemberProfileIds(memberId = request.memberId, profileId = request.profileId),
-                learningTime = Second(value = request.learningTime),
+            LearningHistoryCreateDto.of(
+                memberProfileIds = MemberProfileIds(
+                    memberId = request.memberId,
+                    profileId = request.profileId
+                ),
+                learningTime = Second(
+                    value = request.learningTime
+                ),
                 learningHistoryType = request.learningHistoryType,
-                contentClassification = ContentClassification(contentType = request.contentType, actType = request.actType, contentId = request.contentId),
+                contentClassification = ContentClassification(
+                    contentType = request.contentType,
+                    actType = request.actType,
+                    contentId = request.contentId
+                ),
                 actId = request.actId,
                 score = request.score,
             )
