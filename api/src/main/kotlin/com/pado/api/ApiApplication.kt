@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 object MainDefaults {
     val PROPS = mapOf(
-        "spring.application.name" to "lms-api",
+        "spring.application.name" to "api",
         "spring.profiles.active" to "local",
         "management.endpoints.web.exposure.include" to "info,health",
         "logging.level.root" to "info"
