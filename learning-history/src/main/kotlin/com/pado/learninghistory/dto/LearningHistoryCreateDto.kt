@@ -1,4 +1,4 @@
-package com.pado.api.dto
+package com.pado.learninghistory.dto
 
 import com.pado.domain.dto.LearningScoreDto
 import com.pado.domain.vo.ContentClassification

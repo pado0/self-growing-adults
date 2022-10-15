@@ -1,11 +1,11 @@
-package com.pado.api.service
+package com.pado.learninghistory.service
 
-import com.pado.api.dto.LearningHistoryCreateDto
 import com.pado.domain.dto.LearningHistoryDto
 import com.pado.domain.dto.LearningScoreDto
 import org.springframework.stereotype.Service
 import com.pado.domain.service.LearningHistoryDomainCommandService
 import com.pado.domain.service.LearningScoreDomainCommandService
+import com.pado.learninghistory.dto.LearningHistoryCreateDto
 import javax.transaction.Transactional
 
 @Service
