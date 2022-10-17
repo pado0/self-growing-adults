@@ -1,12 +1,12 @@
 package com.pado.api.controller
 
-import com.pado.api.dto.LearningHistoryCreateDto
 import com.pado.api.dto.LearningHistoryRequestDto
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import com.pado.api.service.LearningHistoryCreateService
+import com.pado.api.dto.LearningHistoryCreateDto
 import com.pado.domain.dto.LearningHistoryDto
 import com.pado.domain.vo.ContentClassification
 import com.pado.domain.vo.MemberProfileIds

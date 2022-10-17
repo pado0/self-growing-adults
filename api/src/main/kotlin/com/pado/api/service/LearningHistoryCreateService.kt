@@ -1,11 +1,11 @@
-package com.pado.learninghistory.service
+package com.pado.api.service
 
+import com.pado.api.dto.LearningHistoryCreateDto
 import com.pado.domain.dto.LearningHistoryDto
 import com.pado.domain.dto.LearningScoreDto
 import org.springframework.stereotype.Service
 import com.pado.domain.service.LearningHistoryDomainCommandService
 import com.pado.domain.service.LearningScoreDomainCommandService
-import com.pado.learninghistory.dto.LearningHistoryCreateDto
 import javax.transaction.Transactional
 
 @Service
@@ -32,11 +32,10 @@ class LearningHistoryCreateService(
             )
         )
 
-
         // 학습 점수는 별도 테이블에 저장. 우선 learningHistory 먼저 저장하고 별도로 스코어를 저장.
         learningHistoryCreateDto.score?.let {
-            if (learningHistoryCreateDto.score.isNotEmpty()) {
-                learningHistoryCreateDto.score.map {
+            if (learningHistoryCreateDto.score!!.isNotEmpty()) {
+                learningHistoryCreateDto.score!!.map {
                     learningScoreDomainCommandService.create(
                         learningScoreDto = LearningScoreDto(
                             scoreData = it.scoreData,
