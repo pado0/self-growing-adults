@@ -13,46 +13,47 @@ import java.net.InetAddress
 import java.net.UnknownHostException
 import java.util.*
 
-@Configuration
+// 로컬 카프카 listen 용 test config
+//@Configuration
 class KafkaConfig {
-
-    @Value("\${kafka.hosts}") // 무슨 value인지
-    lateinit var hosts: String
-
-    @Primary
-    @Bean
-    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, String> {
-
-        val containerFactory = ConcurrentKafkaListenerContainerFactory<String, String>()
-        containerFactory.consumerFactory = consumerFactory()!!
-
-        return containerFactory
-    }
-
-    @Primary
-    @Bean
-    fun consumerFactory(): ConsumerFactory<String, String>? {
-
-        return DefaultKafkaConsumerFactory(consumerProperties())
-    }
-
-    @Bean
-    fun consumerProperties(): Map<String, Any> {
-
-        val hostName = try {
-            InetAddress.getLocalHost().hostName + UUID.randomUUID().toString()
-        } catch (e: UnknownHostException) {
-            UUID.randomUUID().toString()
-        }
-
-        return hashMapOf(
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to hosts,
-            ConsumerConfig.GROUP_ID_CONFIG to hostName,
-            ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "true",
-            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
-            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
-            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
-        )
-    }
+//
+//    @Value("\${kafka.hosts}") // 무슨 value인지
+//    lateinit var hosts: String
+//
+//    @Primary
+//    @Bean
+//    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, String> {
+//
+//        val containerFactory = ConcurrentKafkaListenerContainerFactory<String, String>()
+//        containerFactory.consumerFactory = consumerFactory()!!
+//
+//        return containerFactory
+//    }
+//
+//    @Primary
+//    @Bean
+//    fun consumerFactory(): ConsumerFactory<String, String>? {
+//
+//        return DefaultKafkaConsumerFactory(consumerProperties())
+//    }
+//
+//    @Bean
+//    fun consumerProperties(): Map<String, Any> {
+//
+//        val hostName = try {
+//            InetAddress.getLocalHost().hostName + UUID.randomUUID().toString()
+//        } catch (e: UnknownHostException) {
+//            UUID.randomUUID().toString()
+//        }
+//
+//        return hashMapOf(
+//            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to hosts,
+//            ConsumerConfig.GROUP_ID_CONFIG to hostName,
+//            ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG to "true",
+//            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "latest",
+//            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
+//            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java
+//        )
+//    }
 
 }

@@ -34,8 +34,8 @@ class LearningHistoryCreateService(
 
         // 학습 점수는 별도 테이블에 저장. 우선 learningHistory 먼저 저장하고 별도로 스코어를 저장.
         learningHistoryCreateDto.score?.let {
-            if (learningHistoryCreateDto.score!!.isNotEmpty()) {
-                learningHistoryCreateDto.score!!.map {
+            if (learningHistoryCreateDto.score.isNotEmpty()) {
+                learningHistoryCreateDto.score.map {
                     learningScoreDomainCommandService.create(
                         learningScoreDto = LearningScoreDto(
                             scoreData = it.scoreData,

@@ -1,2 +1,18 @@
-kafka:
-  hosts: localhost:9092
+spring:
+  profiles: local
+  cloud:
+    function:
+      definition: kotlinSupplier; # 함수 이름, 여러개인 경우 kotlinSupplier,kotlinConsumer; 이런 식으로 정의
+    stream:
+      bindings:
+        kotlinSupplier-out-0:
+          destination: backoffice-auth.local.logging.access-info.json #
+      kafka:
+        binder:
+          brokers: localhost
+          defaultBrokerPort: 9092
+          configuration:
+            acks: all
+        bindings:
+          kotlinSupplier-out-0:
+            producer: # producer 세부 설정, 별도로 설정할 부분이 없어 생략

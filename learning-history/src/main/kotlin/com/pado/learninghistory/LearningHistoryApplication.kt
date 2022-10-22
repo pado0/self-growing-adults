@@ -15,7 +15,7 @@ class LearningHistoryApplication
 
 object MainDefaults {
     val PROPS = mapOf(
-        "spring.application.name" to "api",
+        "spring.application.name" to "learning-history",
         "spring.profiles.active" to "local",
         "management.endpoints.web.exposure.include" to "info,health",
         "logging.level.root" to "info"
@@ -31,6 +31,7 @@ class Main : SpringBootServletInitializer() {
     override fun configure(builder: SpringApplicationBuilder): SpringApplicationBuilder =
         builder.properties(MainDefaults.PROPS).sources(Main::class.java)
 }
+
 
 fun main(args: Array<String>) {
     SpringApplicationBuilder().properties(MainDefaults.PROPS).sources(Main::class.java).run(*args)
