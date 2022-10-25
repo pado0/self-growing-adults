@@ -44,7 +44,7 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 
 	// db setting
-	implementation("org.flywaydb:flyway-core")
+//	//implementation("org.flywaydb:flyway-core")
 	runtimeOnly("com.h2database:h2")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
