@@ -46,7 +46,7 @@ class LearningHistory(
         학습 이력 (ENUM 타입. @Enumerated, EnumType 지정 필요)
      */
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false, length = 50)
+    @Column(name = "learning_history_type", nullable = false, length = 50)
     val learningHistoryType: LeaerningHistoryType,
 
     /**
@@ -65,6 +65,6 @@ class LearningHistory(
     val createdAt: Instant,
 
     ) {
-    @Id
+    @Id @GeneratedValue
     val id: Long = DB_NULL_ID
 }
