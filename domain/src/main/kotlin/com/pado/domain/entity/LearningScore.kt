@@ -3,6 +3,8 @@ package com.pado.domain.entity
 import com.pado.domain.constant.DB_NULL_ID
 import org.hibernate.annotations.Type
 import com.pado.domain.type.ScoreType
+import org.springframework.data.annotation.CreatedDate
+import java.time.Instant
 import javax.persistence.*
 
 @Entity
@@ -27,4 +29,8 @@ class LearningScore(
     ) {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = DB_NULL_ID
+
+    @CreatedDate
+    var createdAt: Instant = Instant.now()
+        protected set
 }
