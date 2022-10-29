@@ -1,3 +1,12 @@
+20221029
+scoreData 중 true false 타입은 적용 완료.
+단 true false와 pronounce 데이터가 같이 있는 경우 어떻게 파싱되는지 확인 필요
+1. 프로필 환경별 적용
+2. multi datasource 적용
+3. flyway 적용
+
+테스트 코드 작성 후 이거 다시 시작
+
 20221028
 26일에 하기로 한 Task 전에, Score data 처리하는 부분 먼저 만들어보자.
 
